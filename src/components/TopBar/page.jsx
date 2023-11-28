@@ -19,8 +19,12 @@ export default function TopBar() {
           </Link>
           <nav>
             <ul className="flex gap-8 md:gap-11 text-xs md:text-sm font-semibold">
-              <li className="menuLink">MOVIES</li>
-              <li className="menuLink">PEOPLE</li>
+              <li className="menuLink">
+                <Link href="/Movies">MOVIES</Link>
+              </li>
+              <li className="menuLink">
+                <Link href="/People">PEOPLE</Link>
+              </li>
             </ul>
           </nav>
         </div>
