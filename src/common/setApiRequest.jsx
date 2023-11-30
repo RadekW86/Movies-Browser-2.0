@@ -11,6 +11,7 @@ export default function setApiRequest() {
   let url;
   let urlExtra;
   let type;
+  let list = true;
 
   switch (path[path.length - 1]) {
     case "Movies":
@@ -30,6 +31,7 @@ export default function setApiRequest() {
       break;
 
     default: {
+      list = false;
       switch (path[path.length - 2]) {
         case "Movies":
           type = "Movie";
@@ -68,5 +70,5 @@ export default function setApiRequest() {
       throw new Error();
   }
 
-  return { url, urlExtra, type };
+  return { url, urlExtra, type, list };
 }
