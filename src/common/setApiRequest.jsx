@@ -10,6 +10,7 @@ export default function setApiRequest() {
   const baseURL = "https://api.themoviedb.org/3";
   let url;
   let urlExtra;
+  let type;
 
   switch (path[path.length - 1]) {
     case "Movies":
@@ -17,10 +18,12 @@ export default function setApiRequest() {
         url = `${baseURL}/search/movie?query=${search}&language=en-US&page=${
           page ? page : "1"
         }`;
+        type = "MoviesSearch";
       } else {
         url = `${baseURL}/movie/popular?language=en-US&page=${
           page ? page : "1"
         }`;
+        type = "Movies";
       }
       break;
 
@@ -29,10 +32,12 @@ export default function setApiRequest() {
         url = `${baseURL}/search/person?query=${search}&language=en-US&page=${
           page ? page : "1"
         }`;
+        type = "PeopleSearch";
       } else {
         url = `${baseURL}/person/popular?language=en-US&page=${
           page ? page : "1"
         }`;
+        type = "People";
       }
       break;
 
@@ -43,12 +48,14 @@ export default function setApiRequest() {
           urlExtra = `${baseURL}/movie/${
             path[path.length - 1]
           }/credits?language=en-US`;
+          type = "Movie";
           break;
         case "People":
           url = `${baseURL}/person/${path[path.length - 1]}?language=en-US&`;
           urlExtra = `${baseURL}/person/${
             path[path.length - 1]
           }/combined_credits?language=en-US&`;
+          type = "Person";
           break;
         default:
           throw new Error();
@@ -56,5 +63,5 @@ export default function setApiRequest() {
     }
   }
 
-  return { url, urlExtra };
+  return { url, urlExtra, type };
 }
