@@ -6,12 +6,12 @@ export default function ErrorPage() {
   return (
     <div>
       <div>
-        <Image src={exclamation} alt="exclamation" />
+        <Image priority src={exclamation} alt="exclamation" />
       </div>
       <h2>Ooops! Something went wrong...</h2>
-      <p>Please check your network connection and try again</p>
+      <p>Please check your request and network connection</p>
       <Link href="/">
-        <button></button>
+        <button>Back to home page</button>
       </Link>
     </div>
   );
