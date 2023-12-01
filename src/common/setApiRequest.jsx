@@ -70,5 +70,5 @@ export default function setApiRequest() {
       throw new Error();
   }
 
-  return { url, urlExtra, type, list };
+  return { url, urlExtra, type, list, search };
 }
