@@ -6,9 +6,10 @@ import setApiRequest from "@/common/setApiRequest";
 import ErrorPage from "../ErrorPage/page";
 import ContentList from "./ContentList/page";
 import ContentDetails from "./ContentDetails/page";
+import setTitle from "./setTitle";
 
 export default function Content() {
-  const { url, urlExtra, list } = setApiRequest();
+  const { url, urlExtra, list, type } = setApiRequest();
   const [data, setData] = useState();
   const [dataExtra, setDataExtra] = useState();
   const [status, setStatus] = useState("loading");
@@ -35,17 +36,23 @@ export default function Content() {
     fetchData();
   }, []);
 
+  const title = setTitle();
+
   if (status === "error") {
     return <ErrorPage />;
-  }
-
-  if (status === "success") {
+  } else {
     return (
       <>
         {list === true ? (
-          <ContentList data={data} />
+          <ContentList status={status} type={type} title={title} data={data} />
         ) : (
-          <ContentDetails data={data} dataExtra={dataExtra} />
+          <ContentDetails
+            status={status}
+            type={type}
+            title={title}
+            data={data}
+            dataExtra={dataExtra}
+          />
         )}
       </>
     );
