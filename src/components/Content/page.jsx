@@ -40,23 +40,30 @@ export default function Content() {
 
   const title = setTitle();
 
-  if (status === "error") {
-    return <ErrorPage />;
-  } else {
-    return (
-      <>
-        {list === true ? (
-          <ContentList status={status} type={type} title={title} data={data} />
-        ) : (
-          <ContentDetails
-            status={status}
-            type={type}
-            title={title}
-            data={data}
-            dataExtra={dataExtra}
-          />
-        )}
-      </>
-    );
-  }
+  return (
+    <div className="max-w-6xl mx-auto px-8">
+      {status === "error" ? (
+        <ErrorPage />
+      ) : (
+        <>
+          {list === true ? (
+            <ContentList
+              status={status}
+              type={type}
+              title={title}
+              data={data}
+            />
+          ) : (
+            <ContentDetails
+              status={status}
+              type={type}
+              title={title}
+              data={data}
+              dataExtra={dataExtra}
+            />
+          )}
+        </>
+      )}
+    </div>
+  );
 }
