@@ -1,16 +1,17 @@
 "use client";
 
 import { useSearchParams, usePathname } from "next/navigation";
+import { searchParam, pageParam } from "./params";
 
 export default function getParams() {
   const path = usePathname().split("/");
   const searchParams = useSearchParams();
-  const search = searchParams.get("search");
-  const page = searchParams.get("page");
+  const search = searchParams.get(searchParam);
+  const page = searchParams.get(pageParam);
   let type;
   let list = true;
 
- switch (path[path.length - 1]) {
+  switch (path[path.length - 1]) {
     case "Movies":
       if (search) {
         type = "MoviesSearch";
