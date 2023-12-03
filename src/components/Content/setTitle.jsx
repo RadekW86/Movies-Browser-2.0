@@ -1,7 +1,7 @@
-import setApiRequest from "@/common/setApiRequest";
+import getParams from "@/common/getParams";
 
 export default function setTitle() {
-  const { type, search } = setApiRequest();
+  const { type, search } = getParams();
   let title;
 
   switch (type) {

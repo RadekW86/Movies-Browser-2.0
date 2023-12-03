@@ -1,51 +1,12 @@
-"use client";
-
-import { useSearchParams, usePathname } from "next/navigation";
+import getParams from "./getParams";
 
 export default function setApiRequest() {
-  const path = usePathname().split("/");
-  const searchParams = useSearchParams();
-  const search = searchParams.get("search");
-  const page = searchParams.get("page");
   const baseURL = "https://api.themoviedb.org/3";
+  const { search, page, type } = getParams();
   let url;
   let urlExtra;
-  let type;
-  let list = true;
 
-  switch (path[path.length - 1]) {
-    case "Movies":
-      if (search) {
-        type = "MoviesSearch";
-      } else {
-        type = "Movies";
-      }
-      break;
-
-    case "People":
-      if (search) {
-        type = "PeopleSearch";
-      } else {
-        type = "People";
-      }
-      break;
-
-    default: {
-      list = false;
-      switch (path[path.length - 2]) {
-        case "Movies":
-          type = "Movie";
-          break;
-        case "People":
-          type = "Person";
-          break;
-        default:
-          throw new Error();
-      }
-    }
-  }
-
-  switch (type) {
+    switch (type) {
     case "Movies":
       url = `${baseURL}/movie/popular?language=en-US&page=${page ? page : "1"}`;
       break;
@@ -70,5 +31,5 @@ export default function setApiRequest() {
       throw new Error();
   }
 
-  return { url, urlExtra, type, list, search };
+  return { url, urlExtra };
 }
