@@ -1,6 +1,7 @@
 import Image from "next/image";
 import cameraImage from "../../resources/SVGs/video.svg";
 import Link from "next/link";
+import { moviesPath, peoplePath } from "@/common/routes";
 
 export default function TopBar() {
   return (
@@ -20,10 +21,10 @@ export default function TopBar() {
           <nav>
             <ul className="flex gap-8 md:gap-11 text-xs md:text-sm font-semibold">
               <li className="menuLink">
-                <Link href="/Movies">MOVIES</Link>
+                <Link href={`/${moviesPath}`}>MOVIES</Link>
               </li>
               <li className="menuLink">
-                <Link href="/People">PEOPLE</Link>
+                <Link href={`/${peoplePath}`}>PEOPLE</Link>
               </li>
             </ul>
           </nav>

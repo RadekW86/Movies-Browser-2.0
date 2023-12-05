@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams, usePathname } from "next/navigation";
-import { searchParam, pageParam } from "./params";
+import { searchParam, pageParam, moviesPath, peoplePath } from "./routes";
 
 export default function getParams() {
   const pathSplitted = usePathname().split("/");
@@ -12,7 +12,7 @@ export default function getParams() {
   let list = true;
 
   switch (pathSplitted[pathSplitted.length - 1]) {
-    case "Movies":
+    case moviesPath:
       if (search) {
         type = "MoviesSearch";
       } else {
@@ -20,7 +20,7 @@ export default function getParams() {
       }
       break;
 
-    case "People":
+    case peoplePath:
       if (search) {
         type = "PeopleSearch";
       } else {
@@ -31,10 +31,10 @@ export default function getParams() {
     default: {
       list = false;
       switch (pathSplitted[pathSplitted.length - 2]) {
-        case "Movies":
+        case moviesPath:
           type = "Movie";
           break;
-        case "People":
+        case peoplePath:
           type = "Person";
           break;
         default:
