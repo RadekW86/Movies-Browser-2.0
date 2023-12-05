@@ -9,7 +9,7 @@ export default function setTitle() {
       title = "Popular Movies";
       break;
     case "MoviesSearch":
-      title = `Search results for "${search}" `;
+      title = `Search results for “${search}” `;
       break;
     case "Movie":
       title = ["Cast ", "Crew "];
@@ -18,7 +18,7 @@ export default function setTitle() {
       title = "Popular People";
       break;
     case "PeopleSearch":
-      title = `Search results for "${search}" `;
+      title = `Search results for “${search}” `;
       break;
     case "Person":
       title = ["Movies - cast ", "Movies - crew "];
