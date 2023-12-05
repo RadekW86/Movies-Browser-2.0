@@ -1,18 +1,66 @@
 import Loading from "@/components/Loading/page";
+import NoResults from "@/components/NoResults/page";
+import Section from "@/components/Section/page";
+import Tile from "@/components/Tile/page";
 
-export default function ContentList({ status, type, title, data }) {
+export default function ContentList({ status, type, title, data, path }) {
   console.log(data);
+
+  let count;
+  if (
+    status === "success" &&
+    (type === "MoviesSearch" || type === "PeopleSearch")
+  ) {
+    count =
+      data.total_results >= 10000 ? "( 10000+ )" : `(${data.total_results})`;
+  } else {
+    count = "";
+  }
+
   return (
     <>
-      <h2>{title}</h2>
-      <div>{type}</div>
-      <div>{status}</div>
-      {status === "success" ? (
-        <>
-          <div>OK</div>
-        </>
+      {count === "(0)" ? (
+        <NoResults />
       ) : (
-        <Loading />
+        <main className="pt-6 md:py-11 flex flex-col justify-center items-center">
+          <h2 className="w-full p-1 md:p-3 font-semibold text-lg md:text-4xl">
+            {title} {count}
+          </h2>
+          {status === "success" ? (
+            <Section path={path}>
+              {data.results.map(
+                ({
+                  id,
+                  poster_path,
+                  profile_path,
+                  title,
+                  name,
+                  release_date,
+                  genre_ids,
+                  vote_average,
+                  vote_count,
+                }) => (
+                  <Tile
+                    key={id}
+                    id={id}
+                    poster_path={poster_path}
+                    profile_path={profile_path}
+                    title={title}
+                    name={name}
+                    release_date={release_date}
+                    genre_ids={genre_ids}
+                    vote_average={vote_average}
+                    vote_count={vote_count}
+                    path={path}
+                  />
+                )
+              )}
+            </Section>
+          ) : (
+            <Loading />
+          )}
+          <div className="my-8 md:my-10">PAGINATION</div>
+        </main>
       )}
     </>
   );
