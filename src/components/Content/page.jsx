@@ -8,6 +8,7 @@ import ErrorPage from "../ErrorPage/page";
 import ContentList from "./ContentList/page";
 import ContentDetails from "./ContentDetails/page";
 import setTitle from "./setTitle";
+import { usePathname } from "next/navigation";
 
 export default function Content() {
   const { list, type } = getParams();
@@ -15,6 +16,8 @@ export default function Content() {
   const [data, setData] = useState();
   const [dataExtra, setDataExtra] = useState();
   const [status, setStatus] = useState("loading");
+  const title = setTitle();
+  const path = usePathname();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,12 +39,10 @@ export default function Content() {
     };
 
     fetchData();
-  }, []);
-
-  const title = setTitle();
+  }, [url]);
 
   return (
-    <div className="max-w-6xl mx-auto px-8">
+    <div className="max-w-6xl mx-auto px-4 md:px-8 overflow-x-auto">
       {status === "error" ? (
         <ErrorPage />
       ) : (
@@ -52,6 +53,7 @@ export default function Content() {
               type={type}
               title={title}
               data={data}
+              path={path}
             />
           ) : (
             <ContentDetails
