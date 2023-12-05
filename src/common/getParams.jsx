@@ -4,14 +4,14 @@ import { useSearchParams, usePathname } from "next/navigation";
 import { searchParam, pageParam } from "./params";
 
 export default function getParams() {
-  const path = usePathname().split("/");
+  const pathSplitted = usePathname().split("/");
   const searchParams = useSearchParams();
   const search = searchParams.get(searchParam);
   const page = searchParams.get(pageParam);
   let type;
   let list = true;
 
-  switch (path[path.length - 1]) {
+  switch (pathSplitted[pathSplitted.length - 1]) {
     case "Movies":
       if (search) {
         type = "MoviesSearch";
@@ -30,7 +30,7 @@ export default function getParams() {
 
     default: {
       list = false;
-      switch (path[path.length - 2]) {
+      switch (pathSplitted[pathSplitted.length - 2]) {
         case "Movies":
           type = "Movie";
           break;
@@ -43,5 +43,5 @@ export default function getParams() {
     }
   }
 
-  return { search, page, type, list };
+  return { pathSplitted, search, page, type, list };
 }

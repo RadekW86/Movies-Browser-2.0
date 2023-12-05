@@ -2,7 +2,7 @@ import getParams from "./getParams";
 
 export default function setApiRequest() {
   const baseURL = "https://api.themoviedb.org/3";
-  const { search, page, type } = getParams();
+  const { search, page, type, pathSplitted } = getParams();
   let url;
   let urlExtra;
 
@@ -20,12 +20,12 @@ export default function setApiRequest() {
       url = `${baseURL}/search/person?query=${search}&language=en-US&page=${page ? page : "1"}`;
       break;
     case "Movie":
-      url = `${baseURL}/movie/${path[path.length - 1]}?language=en-US`;
-      urlExtra = `${baseURL}/movie/${path[path.length - 1]}/credits?language=en-US`;
+      url = `${baseURL}/movie/${pathSplitted[pathSplitted.length - 1]}?language=en-US`;
+      urlExtra = `${baseURL}/movie/${pathSplitted[pathSplitted.length - 1]}/credits?language=en-US`;
       break;
     case "Person":
-      url = `${baseURL}/person/${path[path.length - 1]}?language=en-US&`;
-      urlExtra = `${baseURL}/person/${path[path.length - 1]}/combined_credits?language=en-US&`;
+      url = `${baseURL}/person/${pathSplitted[pathSplitted.length - 1]}?language=en-US&`;
+      urlExtra = `${baseURL}/person/${pathSplitted[pathSplitted.length - 1]}/combined_credits?language=en-US&`;
       break;
     default:
       throw new Error();
