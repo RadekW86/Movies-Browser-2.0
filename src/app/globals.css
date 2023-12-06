@@ -3,12 +3,15 @@
 @tailwind utilities;
 
 .menuLink {
-    @apply active:outline-offset-8 active:outline-1 active:outline-white 
-    active:outline active:rounded-3xl transition ease-out duration-300 hover:scale-110 
+    @apply transition ease-out duration-300 hover:scale-105
+}
+
+.menuLinkSelected {
+    @apply outline-offset-8 outline-1 outline-white outline rounded-3xl hover:scale-100
 }
 
 .navButton {
     @apply rounded-md py-2 px-3 md:px-4 bg-lightBlue disabled:bg-gray 
-    flex flex-nowrap justify-center items-center gap-2
+    flex flex-nowrap justify-center items-center gap-2 
     hover:scale-105 hover:disabled:scale-100
 }
