@@ -20,6 +20,7 @@ export default function Content() {
   const path = usePathname();
 
   useEffect(() => {
+    setStatus("loading");
     const fetchData = async () => {
       try {
         const result = await getApiData(url);

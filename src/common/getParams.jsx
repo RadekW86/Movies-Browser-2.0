@@ -4,6 +4,7 @@ import { useSearchParams, usePathname } from "next/navigation";
 import { searchParam, pageParam, moviesPath, peoplePath } from "./routes";
 
 export default function getParams() {
+  const path = usePathname();
   const pathSplitted = usePathname().split("/");
   const searchParams = useSearchParams();
   const search = searchParams.get(searchParam);
@@ -43,5 +44,5 @@ export default function getParams() {
     }
   }
 
-  return { pathSplitted, search, page, type, list };
+  return { path, pathSplitted, searchParams, search, page, type, list };
 }

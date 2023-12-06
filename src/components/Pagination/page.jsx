@@ -1,13 +1,30 @@
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import getParams from "@/common/getParams";
+import { pageParam } from "@/common/routes";
 import vectorPrevious from "../../resources/SVGs/vectorPrevious.svg";
 import vectorNext from "../../resources/SVGs/vectorNext.svg";
 import Image from "next/image";
 
 export default function Pagination({ pageCurrent, totalPages }) {
   const lastPage = totalPages >= 500 ? 500 : totalPages;
+  const [pageState, setPageState] = useState(parseInt(pageCurrent));
+  const router = useRouter();
+  const { path, searchParams } = getParams();
+
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams);
+    params.set(pageParam, pageState);
+    router.push(path + "?" + params.toString());
+  }, [pageState]);
 
   return (
     <div className="my-8 md:my-10 flex justify-center items-center gap-2 md:gap-3 text-xs md:text-sm">
-      <button className="navButton" disabled={pageCurrent === 1}>
+      <button
+        className="navButton"
+        disabled={pageCurrent === 1}
+        onClick={() => setPageState(1)}
+      >
         <div className="flex">
           <Image
             src={vectorPrevious}
@@ -22,7 +39,11 @@ export default function Pagination({ pageCurrent, totalPages }) {
         </div>
         <div className="hidden md:block">First</div>
       </button>
-      <button className="navButton" disabled={pageCurrent === 1}>
+      <button
+        className="navButton"
+        disabled={pageCurrent === 1}
+        onClick={() => setPageState(pageState - 1)}
+      >
         <div>
           <Image
             src={vectorPrevious}
@@ -38,7 +59,11 @@ export default function Pagination({ pageCurrent, totalPages }) {
         <span>of</span>
         <span className="font-semibold">{lastPage}</span>
       </div>
-      <button className="navButton" disabled={pageCurrent === lastPage}>
+      <button
+        className="navButton"
+        disabled={pageCurrent === lastPage}
+        onClick={() => setPageState(pageState + 1)}
+      >
         <div className="hidden md:block">Next</div>
         <div>
           <Image
@@ -50,7 +75,11 @@ export default function Pagination({ pageCurrent, totalPages }) {
           />
         </div>
       </button>
-      <button className="navButton" disabled={pageCurrent === lastPage}>
+      <button
+        className="navButton"
+        disabled={pageCurrent === lastPage}
+        onClick={() => setPageState(lastPage)}
+      >
         <div className="hidden md:block">Last</div>
         <div className="flex">
           <Image
