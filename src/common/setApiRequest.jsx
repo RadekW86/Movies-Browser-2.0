@@ -1,8 +1,8 @@
 import getParams from "./getParams";
 export const backdropURL = "https://image.tmdb.org/t/p/original/";
+export const genreURL = "https://api.themoviedb.org/3/genre/movie/list?language=en";
 
 export default function setApiRequest() {
-
   const baseURL = "https://api.themoviedb.org/3";
   const { search, page, type, pathSplitted } = getParams();
   let url;
