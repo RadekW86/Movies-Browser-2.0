@@ -39,7 +39,7 @@ export default function getParams() {
           type = "Person";
           break;
         default:
-          throw new Error();
+          type = "";
       }
     }
   }
