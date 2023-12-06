@@ -8,16 +8,14 @@ import ErrorPage from "../ErrorPage/page";
 import ContentList from "./ContentList/page";
 import ContentDetails from "./ContentDetails/page";
 import setTitle from "./setTitle";
-import { usePathname } from "next/navigation";
 
 export default function Content() {
-  const { list, type } = getParams();
+  const { list, type, path } = getParams();
   const { url, urlExtra } = setApiRequest();
   const [data, setData] = useState();
   const [dataExtra, setDataExtra] = useState();
   const [status, setStatus] = useState("loading");
   const title = setTitle();
-  const path = usePathname();
 
   useEffect(() => {
     setStatus("loading");
