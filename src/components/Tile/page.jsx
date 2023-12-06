@@ -5,6 +5,7 @@ import profile from "../../resources/SVGs/profile.svg";
 import video from "../../resources/SVGs/video.svg";
 import star from "../../resources/SVGs/star.svg";
 import Image from "next/image";
+import Genres from "../Genres/page";
 
 export default function Tile({
   id,
@@ -20,8 +21,8 @@ export default function Tile({
 }) {
   if (path.includes(moviesPath)) {
     return (
-      <div className="rounded-md p-2 md:p-4 bg-white">
-        <div className="grid grid-cols-[1fr_3fr] md:grid-cols-1 gap-x-4">
+      <div className="rounded-md p-2 md:p-4 bg-white flex flex-col">
+        <div className="grid grid-cols-[1fr_3fr] md:flex md:flex-col md:flex-grow gap-x-4">
           <Link href={`${path}/${id}`}>
             {poster_path ? (
               <img
@@ -35,7 +36,7 @@ export default function Tile({
               </div>
             )}
           </Link>
-          <div className="flex flex-col justify-between">
+          <div className="flex flex-col justify-between flex-grow">
             <div>
               <Link href={`${path}/${id}`}>
                 <h3 className="text-sm md:text-xl font-medium mt-2 md:mt-4">
@@ -45,9 +46,11 @@ export default function Tile({
               <div className="font-normal my-1 md:my-2 text-xs md:text-base">
                 {release_date ? new Date(release_date).getFullYear() : ""}
               </div>
-              <div className="flex flex-wrap gap-2 mb-3 md:mb-7 text-xs">{genre_ids}</div>
+              <div>
+                <Genres genre_ids={genre_ids} />
+              </div>
             </div>
-            <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-4">
+            <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-0">
               <div className="flex justify-center items-center w-4 md:w-6">
                 <Image src={star} alt="star" />
               </div>
