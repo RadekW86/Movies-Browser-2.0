@@ -5,25 +5,17 @@ import { moviesPath, peoplePath } from "@/common/routes";
 import getParams from "@/common/getParams";
 
 export default function Nav() {
-  const { path } = getParams();
+  const { atMovies, atPeople } = getParams();
 
   return (
     <nav>
       <ul className="flex gap-6 md:gap-11 text-xs md:text-sm font-semibold">
-        <li
-          className={`menuLink ${
-            path.includes(moviesPath) ? "menuLinkSelected" : ""
-          }`}
-        >
+        <li className={`menuLink ${atMovies ? "menuLinkSelected" : ""}`}>
           <Link href={`/${moviesPath}`} className="uppercase">
             {moviesPath}
           </Link>
         </li>
-        <li
-          className={`menuLink ${
-            path.includes(peoplePath) ? "menuLinkSelected" : ""
-          }`}
-        >
+        <li className={`menuLink ${atPeople ? "menuLinkSelected" : ""}`}>
           <Link href={`/${peoplePath}`} className="uppercase">
             {peoplePath}
           </Link>

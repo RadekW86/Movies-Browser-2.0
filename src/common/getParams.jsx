@@ -12,6 +12,8 @@ export default function getParams() {
   let type;
   let isList = true;
   let isSearch = false;
+  const atMovies = path.includes(moviesPath);
+  const atPeople = path.includes(peoplePath);
 
   switch (pathSplitted[pathSplitted.length - 1]) {
     case moviesPath:
@@ -56,5 +58,7 @@ export default function getParams() {
     type,
     isList,
     isSearch,
+    atMovies,
+    atPeople,
   };
 }

@@ -13,12 +13,18 @@ import { useEffect, useState } from "react";
 import { redirect, useRouter } from "next/navigation";
 
 export default function Search() {
-  const { path, pathSplitted, search, searchParams, isSearch } = getParams();
+  const {
+    path,
+    pathSplitted,
+    search,
+    searchParams,
+    isSearch,
+    atMovies,
+    atPeople,
+  } = getParams();
   const router = useRouter();
   const [input, setInput] = useState(search || "");
   let placeholder;
-  const atMovies = path.includes(moviesPath);
-  const atPeople = path.includes(peoplePath);
 
   useEffect(() => {
     !isSearch && setInput("");
