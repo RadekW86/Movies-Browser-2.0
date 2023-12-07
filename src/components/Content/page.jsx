@@ -10,7 +10,7 @@ import ContentDetails from "./ContentDetails/page";
 import setTitle from "./setTitle";
 
 export default function Content() {
-  const { list, type, path } = getParams();
+  const { isList, type, path } = getParams();
   const { url, urlExtra } = setApiRequest();
   const [data, setData] = useState();
   const [dataExtra, setDataExtra] = useState();
@@ -46,7 +46,7 @@ export default function Content() {
         <ErrorPage />
       ) : (
         <>
-          {list === true ? (
+          {isList ? (
             <ContentList
               status={status}
               type={type}

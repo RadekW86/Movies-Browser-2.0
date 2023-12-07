@@ -10,12 +10,14 @@ export default function getParams() {
   const search = searchParams.get(searchParam);
   const page = searchParams.get(pageParam);
   let type;
-  let list = true;
+  let isList = true;
+  let isSearch = false;
 
   switch (pathSplitted[pathSplitted.length - 1]) {
     case moviesPath:
       if (search) {
         type = "MoviesSearch";
+        isSearch = true;
       } else {
         type = "Movies";
       }
@@ -24,13 +26,14 @@ export default function getParams() {
     case peoplePath:
       if (search) {
         type = "PeopleSearch";
+        isSearch = true;
       } else {
         type = "People";
       }
       break;
 
     default: {
-      list = false;
+      isList = false;
       switch (pathSplitted[pathSplitted.length - 2]) {
         case moviesPath:
           type = "Movie";
@@ -44,5 +47,14 @@ export default function getParams() {
     }
   }
 
-  return { path, pathSplitted, searchParams, search, page, type, list };
+  return {
+    path,
+    pathSplitted,
+    searchParams,
+    search,
+    page,
+    type,
+    isList,
+    isSearch,
+  };
 }

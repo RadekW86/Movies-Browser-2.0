@@ -13,7 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`bg-lightGray text-black ${poppins.className}`}>
+      <body className={`bg-lightGray text-black ${poppins.className} overflow-y-scroll`}>
         <TopBar />
         <GenresProvider>{children}</GenresProvider>
       </body>
