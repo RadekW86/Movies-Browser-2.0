@@ -1,17 +1,26 @@
+import { moviesPath, peoplePath } from "@/common/routes";
 import Loading from "@/components/Loading/page";
 import NoResults from "@/components/NoResults/page";
 import Pagination from "@/components/Pagination/page";
 import Section from "@/components/Section/page";
 import Tile from "@/components/Tile/page";
 
-export default function ContentList({ status, type, title, data, path }) {
+export default function ContentList({
+  status,
+  isSearch,
+  title,
+  data,
+  path,
+  atMovies,
+  atPeople,
+}) {
   console.log(data);
+  let category;
+  atMovies && (category = moviesPath);
+  atPeople && (category = peoplePath);
 
   let count;
-  if (
-    status === "success" &&
-    (type === "MoviesSearch" || type === "PeopleSearch")
-  ) {
+  if (status === "success" && isSearch) {
     count =
       data.total_results >= 10000 ? "( 10000+ )" : `(${data.total_results})`;
   } else {
@@ -29,7 +38,7 @@ export default function ContentList({ status, type, title, data, path }) {
           </h2>
           {status === "success" ? (
             <>
-              <Section path={path}>
+              <Section path={path} category={category}>
                 {data.results.map(
                   ({
                     id,
@@ -44,6 +53,7 @@ export default function ContentList({ status, type, title, data, path }) {
                   }) => (
                     <Tile
                       key={id}
+                      category={category}
                       id={id}
                       poster_path={poster_path}
                       profile_path={profile_path}
@@ -58,7 +68,10 @@ export default function ContentList({ status, type, title, data, path }) {
                   )
                 )}
               </Section>
-              <Pagination pageCurrent={data.page} totalPages={data.total_pages}/>
+              <Pagination
+                pageCurrent={data.page}
+                totalPages={data.total_pages}
+              />
             </>
           ) : (
             <Loading />

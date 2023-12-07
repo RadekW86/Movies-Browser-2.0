@@ -9,6 +9,7 @@ import Genres from "../Genres/page";
 
 export default function Tile({
   id,
+  category,
   poster_path,
   profile_path,
   title,
@@ -17,13 +18,13 @@ export default function Tile({
   genre_ids,
   vote_average,
   vote_count,
-  path,
+  role,
 }) {
-  if (path.includes(moviesPath)) {
+  if (category === moviesPath) {
     return (
       <div className="rounded-md p-2 md:p-4 bg-white flex flex-col">
         <div className="grid grid-cols-[1fr_3fr] md:flex md:flex-col md:flex-grow gap-x-4">
-          <Link href={`${path}/${id}`}>
+          <Link href={`/${category}/${id}`}>
             {poster_path ? (
               <img
                 className="rounded-md aspect-aspectTTT w-[160px] md:w-full"
@@ -38,7 +39,7 @@ export default function Tile({
           </Link>
           <div className="flex flex-col justify-between flex-grow">
             <div>
-              <Link href={`${path}/${id}`}>
+              <Link href={`/${category}/${id}`}>
                 <h3 className="text-sm md:text-xl font-medium mt-2 md:mt-4">
                   {title}
                 </h3>
@@ -67,10 +68,10 @@ export default function Tile({
     );
   }
 
-  if (path.includes(peoplePath)) {
+  if (category === peoplePath) {
     return (
       <div className="rounded-md p-2 md:p-4 bg-white">
-        <Link href={`${path}/${id}`}>
+        <Link href={`/${category}/${id}`}>
           {profile_path ? (
             <img
               className="rounded-md aspect-aspectTTT"
@@ -83,11 +84,14 @@ export default function Tile({
             </div>
           )}
         </Link>
-        <Link href={`${path}/${id}`}>
+        <Link href={`/${category}/${id}`}>
           <h3 className="text-base md:text-xl font-medium text-center mt-2 md:mt-4">
             {name}
           </h3>
         </Link>
+        {role && (
+          <div className="text-base text-center font-normal my-2">{role}</div>
+        )}
       </div>
     );
   }
