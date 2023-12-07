@@ -10,7 +10,7 @@ import ContentDetails from "./ContentDetails/page";
 import setTitle from "./setTitle";
 
 export default function Content() {
-  const { isList, type, path } = getParams();
+  const { isList, isSearch, type, atMovies, atPeople } = getParams();
   const { url, urlExtra } = setApiRequest();
   const [data, setData] = useState();
   const [dataExtra, setDataExtra] = useState();
@@ -49,10 +49,11 @@ export default function Content() {
           {isList ? (
             <ContentList
               status={status}
-              type={type}
+              isSearch={isSearch}
               title={title}
               data={data}
-              path={path}
+              atMovies={atMovies}
+              atPeople={atPeople}
             />
           ) : (
             <ContentDetails
@@ -61,6 +62,8 @@ export default function Content() {
               title={title}
               data={data}
               dataExtra={dataExtra}
+              atMovies={atMovies}
+              atPeople={atPeople}
             />
           )}
         </>
