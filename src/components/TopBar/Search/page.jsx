@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import searchIcon from "../../../resources/SVGs/search.svg";
-import getParams from "@/common/getParams";
+import useGetParams from "@/common/useGetParams";
 import {
   moviesPath,
   peoplePath,
@@ -21,7 +21,7 @@ export default function Search() {
     isSearch,
     atMovies,
     atPeople,
-  } = getParams();
+  } = useGetParams();
   const router = useRouter();
   const [input, setInput] = useState(search || "");
   let placeholder;

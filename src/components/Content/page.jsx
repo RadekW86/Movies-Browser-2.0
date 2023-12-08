@@ -1,21 +1,21 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import getParams from "@/common/getParams";
-import setApiRequest from "@/common/setApiRequest";
+import useGetParams from "@/common/useGetParams";
+import useSetApiRequest from "@/common/useSetApiRequest";
 import getApiData from "@/common/getApiData";
 import ErrorPage from "../ErrorPage/page";
 import ContentList from "./ContentList/page";
 import ContentDetails from "./ContentDetails/page";
-import setTitle from "./setTitle";
+import useSetTitle from "./useSetTitle";
 
 export default function Content() {
-  const { isList, isSearch, type, atMovies, atPeople } = getParams();
-  const { url, urlExtra } = setApiRequest();
+  const { isList, isSearch, type, atMovies, atPeople } = useGetParams();
+  const { url, urlExtra } = useSetApiRequest();
   const [data, setData] = useState();
   const [dataExtra, setDataExtra] = useState();
   const [status, setStatus] = useState("loading");
-  const title = setTitle();
+  const title = useSetTitle();
 
   useEffect(() => {
     setStatus("loading");

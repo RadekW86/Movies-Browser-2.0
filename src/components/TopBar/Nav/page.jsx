@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { moviesPath, peoplePath } from "@/common/routes";
-import getParams from "@/common/getParams";
+import useGetParams from "@/common/useGetParams";
 
 export default function Nav() {
-  const { atMovies, atPeople } = getParams();
+  const { atMovies, atPeople } = useGetParams();
 
   return (
     <nav>

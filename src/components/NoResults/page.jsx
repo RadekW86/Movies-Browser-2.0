@@ -1,9 +1,9 @@
-import getParams from "@/common/getParams";
+import useGetParams from "@/common/useGetParams";
 import Image from "next/image";
 import noResults from "../../resources/SVGs/noResults.svg";
 
 export default function NoResults() {
-  const { search } = getParams();
+  const { search } = useGetParams();
   return (
     <div className="flex flex-col justify-center items-center">
       <h2 className="w-full my-3 font-semibold text-lg md:text-4xl">

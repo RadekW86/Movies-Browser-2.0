@@ -1,7 +1,7 @@
-import getParams from "@/common/getParams";
+import useGetParams from "@/common/useGetParams";
 
-export default function setTitle() {
-  const { type, search } = getParams();
+export default function useSetTitle() {
+  const { type, search } = useGetParams();
   let title;
 
   switch (type) {

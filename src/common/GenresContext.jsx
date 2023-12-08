@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import getApiData from "./getApiData";
-import { genreURL } from "./setApiRequest";
+import { genreURL } from "./useSetApiRequest";
 
 const GenresContex = createContext();
 

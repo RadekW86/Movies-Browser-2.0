@@ -1,5 +1,5 @@
 import { moviesPath, peoplePath } from "@/common/routes";
-import { backdropURL } from "@/common/setApiRequest";
+import { backdropURL } from "@/common/useSetApiRequest";
 import profile from "../../resources/SVGs/profile.svg";
 import video from "../../resources/SVGs/video.svg";
 import star from "../../resources/SVGs/star.svg";

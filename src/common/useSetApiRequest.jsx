@@ -1,10 +1,10 @@
-import getParams from "./getParams";
+import useGetParams from "./useGetParams";
 export const backdropURL = "https://image.tmdb.org/t/p/original/";
 export const genreURL = "https://api.themoviedb.org/3/genre/movie/list?language=en";
 
-export default function setApiRequest() {
+export default function useSetApiRequest() {
   const baseURL = "https://api.themoviedb.org/3";
-  const { search, page, type, pathSplitted } = getParams();
+  const { search, page, type, pathSplitted } = useGetParams();
   let url;
   let urlExtra;
 

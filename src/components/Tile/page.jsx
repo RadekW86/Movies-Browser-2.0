@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { backdropURL } from "@/common/setApiRequest";
+import { backdropURL } from "@/common/useSetApiRequest";
 import { moviesPath, peoplePath } from "@/common/routes";
 import profile from "../../resources/SVGs/profile.svg";
 import video from "../../resources/SVGs/video.svg";

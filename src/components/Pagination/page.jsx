@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import getParams from "@/common/getParams";
+import useGetParams from "@/common/useGetParams";
 import { pageParam } from "@/common/routes";
 import vectorPrevious from "../../resources/SVGs/vectorPrevious.svg";
 import vectorNext from "../../resources/SVGs/vectorNext.svg";
@@ -10,7 +10,7 @@ export default function Pagination({ pageCurrent, totalPages }) {
   const lastPage = totalPages >= 500 ? 500 : totalPages;
   const [pageState, setPageState] = useState(parseInt(pageCurrent));
   const router = useRouter();
-  const { path, searchParams } = getParams();
+  const { path, searchParams } = useGetParams();
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams);
