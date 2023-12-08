@@ -22,7 +22,7 @@ export default function Tile({
 }) {
   if (category === moviesPath) {
     return (
-      <div className="rounded-md p-2 md:p-4 bg-white flex flex-col">
+      <div className="rounded-md p-2 md:p-4 bg-white flex flex-col shadow-basic">
         <div className="grid grid-cols-[1fr_3fr] md:flex md:flex-col md:flex-grow gap-x-4">
           <Link href={`/${category}/${id}`}>
             {poster_path ? (
@@ -70,7 +70,7 @@ export default function Tile({
 
   if (category === peoplePath) {
     return (
-      <div className="rounded-md p-2 md:p-4 bg-white">
+      <div className="rounded-md p-2 md:p-4 bg-white shadow-basic">
         <Link href={`/${category}/${id}`}>
           {profile_path ? (
             <img
