@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  distDir: "out",
+  experimental: {
+    images: true,
+  },
 };
 
 module.exports = nextConfig;
