@@ -1,5 +1,6 @@
 import { moviesPath, peoplePath } from "@/common/routes";
 import Loading from "@/components/Loading/page";
+import MainTile from "@/components/MainTile/page";
 import Section from "@/components/Section/page";
 import Tile from "@/components/Tile/page";
 import { nanoid } from "nanoid";
@@ -16,13 +17,17 @@ export default function ContentDetails({
   let category;
   atMovies && (category = peoplePath);
   atPeople && (category = moviesPath);
+  let categoryMain;
+  atMovies && (categoryMain = moviesPath);
+  atPeople && (categoryMain = peoplePath);
 
   return (
     <>
       {status === "success" ? (
-        <main className="pt-6 md:py-11 flex flex-col justify-center items-center">
+        <main className="pt-6 md:py-11 flex flex-col justify-center items-center gap-6 md:gap-11">
+          <MainTile data={data} categoryMain={categoryMain} status={status}/>
           {dataExtra.cast.length > 0 ? (
-            <>
+            <div>
               <h2 className="w-full p-1 md:p-3 font-semibold text-lg md:text-4xl">
                 {title[0]} ({dataExtra.cast.length})
               </h2>
@@ -57,12 +62,12 @@ export default function ContentDetails({
                   )
                 )}
               </Section>
-            </>
+            </div>
           ) : (
             ""
           )}
           {dataExtra.crew.length > 0 ? (
-            <>
+            <div>
               <h2 className="w-full p-1 md:p-3 font-semibold text-lg md:text-4xl">
                 {title[1]} ({dataExtra.crew.length})
               </h2>
@@ -97,7 +102,7 @@ export default function ContentDetails({
                   )
                 )}
               </Section>
-            </>
+            </div>
           ) : (
             ""
           )}
