@@ -13,7 +13,6 @@ export default function ContentDetails({
   atMovies,
   atPeople,
 }) {
-  console.log(data, dataExtra);
   let category;
   atMovies && (category = peoplePath);
   atPeople && (category = moviesPath);

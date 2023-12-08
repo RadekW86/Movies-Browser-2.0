@@ -14,7 +14,6 @@ export default function ContentList({
   atMovies,
   atPeople,
 }) {
-  console.log(data);
   let category;
   atMovies && (category = moviesPath);
   atPeople && (category = peoplePath);
