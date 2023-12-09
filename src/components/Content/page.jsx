@@ -8,6 +8,7 @@ import ErrorPage from "../ErrorPage/page";
 import ContentList from "./ContentList/page";
 import ContentDetails from "./ContentDetails/page";
 import useSetTitle from "./useSetTitle";
+import Banner from "../Banner/page";
 
 export default function Content() {
   const { isList, isSearch, type, atMovies, atPeople } = useGetParams();
@@ -41,33 +42,40 @@ export default function Content() {
   }, [url]);
 
   return (
-    <div className="max-w-6xl mx-auto px-4 md:px-8 overflow-x-auto">
-      {status === "error" ? (
-        <ErrorPage />
+    <>
+      {status === "success" ? (
+        <Banner data={data} atMovies={atMovies} />
       ) : (
-        <>
-          {isList ? (
-            <ContentList
-              status={status}
-              isSearch={isSearch}
-              title={title}
-              data={data}
-              atMovies={atMovies}
-              atPeople={atPeople}
-            />
-          ) : (
-            <ContentDetails
-              status={status}
-              type={type}
-              title={title}
-              data={data}
-              dataExtra={dataExtra}
-              atMovies={atMovies}
-              atPeople={atPeople}
-            />
-          )}
-        </>
+        <></>
       )}
-    </div>
+      <div className="max-w-6xl mx-auto px-4 md:px-8 overflow-x-auto">
+        {status === "error" ? (
+          <ErrorPage />
+        ) : (
+          <>
+            {isList ? (
+              <ContentList
+                status={status}
+                isSearch={isSearch}
+                title={title}
+                data={data}
+                atMovies={atMovies}
+                atPeople={atPeople}
+              />
+            ) : (
+              <ContentDetails
+                status={status}
+                type={type}
+                title={title}
+                data={data}
+                dataExtra={dataExtra}
+                atMovies={atMovies}
+                atPeople={atPeople}
+              />
+            )}
+          </>
+        )}
+      </div>
+    </>
   );
 }
