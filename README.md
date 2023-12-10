@@ -1,7 +1,7 @@
 # Movies Browser 2.0
 
 ## DEMO:
-[click to visit](https://radekw86.github.io/Movies-Browser-2.0/)
+[click to visit](https://movies-browser-2.vercel.app/Movies)
 
 ## General info:
 "Movies Browser" is an application for searching movies, actors, and browsing information about them. 
